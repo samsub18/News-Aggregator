@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Login Page</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+	<link rel="icon" type="image/png" href="{% static 'images/icons/favicon.ico'%}"/>
+
+	<link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.min.css'%}">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css'%}">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/iconic/css/material-design-iconic-font.min.css'%}">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'animate/animate.css'%}">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css/util.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css'%}">
+</head>
+<body style="font-family:'Open Sans' ">
+	<div class="limiter">
+		<div style="background-image: url('/static/images/black.jpg') "class="container-login100">
+			<div class="wrap-login100">
+				<form class="login100-form validate-form" method = 'POST'>
+					{% csrf_token %}
+					<span class="login100-form-title p-b-18">
+						Successfully Logged Out
+					</span>
+
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button class="login100-form-btn">
+								<a href="{% url 'login' %}" class="blob-btn " style=" color:white ">Login Again</a>
+							</button>
+						</div>
+					</div>
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button class="login100-form-btn">
+								<a href="{% url 'index' %}" class="blob-btn " style=" color:white ">Go Home</a>
+							</button>
+						</div>
+					</div>
+
+					<script>
+						{% for message in messages %}
+							alert("{{message}}");
+						{% endfor %}
+					</script>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script src="{% static 'jquery/jquery-3.2.1.min.js'%}"></script>
+	<script src="{% static 'js/main.js'%}"></script>
+	
+</body>
+</html>

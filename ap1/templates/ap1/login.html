@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Login Page</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link rel="icon" type="image/png" href="{% static 'images/icons/favicon.ico'%}"/>
+
+	<link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.min.css'%}">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css'%}">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/iconic/css/material-design-iconic-font.min.css'%}">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'animate/animate.css'%}">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css/util.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css'%}">
+</head>
+<style>
+	.container-login100{
+  background-color:black;
+}
+</style>
+<body>
+	<div class="limiter">
+		<div style="background-image: url('/static/images/black.jpg') "class="container-login100">
+			<div class="wrap-login100">
+				<form class="login100-form validate-form" method = 'POST'>
+					{% csrf_token %}
+					<span class="login100-form-title p-b-18">
+						Welcome
+					</span>
+					<span class="login100-form-title p-b-18">
+						<i class="zmdi zmdi-font"></i>
+					</span>
+
+					<div class="wrap-input100 " >
+						<input class="input100" type="text" name="username">
+						<span class="focus-input100" data-placeholder="USERNAME"></span></input>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate="Enter password">
+						<span class="btn-show-pass">
+							<i class="zmdi zmdi-eye"></i>
+						</span>
+						<input class="input100" type="password" name="password">
+						<span class="focus-input100" data-placeholder="Password"></span></input>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button class="login100-form-btn">
+								Login
+							</button>
+						</div>
+					</div>
+
+					<div class="text-center p-t-55">
+						<span class="txt1">
+							Don’t have an account?
+						</span>
+
+						<a class="txt2" href="/register">
+							Sign Up
+						</a>
+					</div>
+					<script>
+						{% for message in messages %}
+							alert("{{message}}");
+						{% endfor %}
+					</script>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script src="{% static 'jquery/jquery-3.2.1.min.js'%}"></script>
+	<script src="{% static 'js/main.js'%}"></script>
+	
+</body>
+</html>

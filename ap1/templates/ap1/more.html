@@ -1,0 +1,322 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <META HTTP-EQUIV="refresh" CONTENT="15">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<style>
+
+.buttons {
+  margin-top: 20px;
+  margin-right:0px;
+  text-align: center;
+  border-radius: 20px;
+}
+button {
+    outline: none !important;
+    border: none;
+    background: transparent;
+
+}
+
+.blob-btn {
+  z-index: 1;
+  position:absolute;
+ 
+  margin-right:20px;
+  padding: 20px 46px;
+  text-align: center;
+  text-transform: uppercase;
+  color: rgb(0, 0, 0);
+  font-size: 16px;
+  font-weight: bold;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  -webkit-transition: color 0.5s;
+  transition: color 0.5s;
+  cursor: pointer;
+  border-radius: 30px;
+  text-decoration: none;
+}
+.blob-btn:before {
+  content: "";
+  z-index: 1;
+  position: absolute;
+  text-decoration: none;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid rgba(0, 0, 0,0.5);
+  border-radius: 30px;
+}
+.blob-btn:after {
+  content: "";
+  z-index: -2;
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  -webkit-transition: all 0.3s 0.2s;
+  transition: all 0.3s 0.2s;
+  border-radius: 30px;
+}
+.blob-btn:hover {
+  color: #FFFFFF;
+  border-radius: 30px;
+  text-decoration: none;
+}
+.blob-btn:hover:after {
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  left: 0;
+  text-decoration: none;
+  top: 0;
+  border-radius: 30px;
+}
+.blob-btn__inner {
+  z-index: -1;
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  background: rgba(255,255,255,0.9);
+}
+.blob-btn__blobs {
+  position: relative;
+  display: block;
+  height: 100%;
+  -webkit-filter: url("#goo");
+          filter: url("#goo");
+}
+.blob-btn__blob {
+  position: absolute;
+  top: 2px;
+  width: 30%;
+  height: 100%;
+  background: rgb(0, 0, 0);
+  border-radius: 100%;
+  -webkit-transform: translate3d(0, 150%, 0) scale(1.7);
+          transform: translate3d(0, 150%, 0) scale(1.7);
+  -webkit-transition: -webkit-transform 0.45s;
+  transition: -webkit-transform 0.45s;
+  transition: transform 0.45s;
+  transition: transform 0.45s, -webkit-transform 0.45s;
+}
+@supports ((-webkit-filter: url("#goo")) or (filter: url("#goo"))) {
+  .blob-btn__blob {
+    -webkit-transform: translate3d(0, 150%, 0) scale(1.8);
+            transform: translate3d(0, 150%, 0) scale(1.8);
+  }
+}
+.blob-btn__blob:nth-child(1) {
+  left: 0%;
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
+}
+.blob-btn__blob:nth-child(2) {
+  left: 30%;
+  -webkit-transition-delay: 0.08s;
+          transition-delay: 0.08s;
+}
+.blob-btn__blob:nth-child(3) {
+  left: 60%;
+  -webkit-transition-delay: 0.16s;
+          transition-delay: 0.16s;
+}
+.blob-btn__blob:nth-child(4) {
+  left: 90%;
+  -webkit-transition-delay: 0.24s;
+          transition-delay: 0.24s;
+}
+.blob-btn:hover .blob-btn__blob {
+  -webkit-transform: translateZ(0) scale(1.7);
+          transform: translateZ(0) scale(1.7);
+}
+@supports ((-webkit-filter: url("#goo")) or (filter: url("#goo"))) {
+  .blob-btn:hover .blob-btn__blob {
+    -webkit-transform: translateZ(0) scale(1.4);
+            transform: translateZ(0) scale(1.4);
+  }
+}
+
+
+ul {
+  list-style-type: none;
+  
+  padding: 15px;
+  width: 13%;
+  background-color:black;
+  position: fixed;
+  height: 100%;
+  font-size: 16px;
+  overflow: auto;
+}
+
+li a {
+  display: block;
+  color:white;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+li a.active {
+  background-color: rgba(15, 119, 192,0.7);
+  color: white;
+  text-decoration: none
+}
+
+li a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+  text-decoration: none;
+}
+
+#box {  
+    width:300px;
+    border-top:1px solid rgba(0, 255, 204,1);
+    border-left:1px solid rgba(0, 255, 204,1);
+    border-right:1px solid rgba(0, 255, 204,1);
+    border-bottom:1px solid rgba(0, 255, 204,1);
+    padding :20px;
+    position: relative;
+    margin:25px;
+    float:left;
+    height:450px;
+    background-color:black;
+    overflow: hidden;
+    border-radius: 10px;
+    
+    }
+
+
+
+#box:hover > *:not(.head){
+  filter:blur(2px);
+}
+
+
+
+#box:hover:after{
+   content: 'READ MORE';
+   text-align: center;
+}
+
+body{
+    align-items: center;
+    background-color: black;
+    color:rgba(255,255,255,0.8);
+    font-size:14px;
+
+
+  }
+.heading{
+    background-color:black;
+    color:white;
+    text-align: center;
+    padding: 10px;
+    border-bottom:1px solid rgba(0, 255, 204,1);
+
+  }
+
+
+.head{
+  width:250px;
+  background-color: black;
+  padding:10px;
+  border-radius: 10px;
+
+}
+.more:hover{
+  text-decoration: none;
+  color:white;
+}
+.loadmore{
+  text-align: center;
+  margin-bottom: 0%;
+  margin-top:2400px;
+}
+.loadmore:hover{
+  color:white;
+
+}
+.logo{
+  top:51px;
+  left:-10px;
+  position: fixed;
+
+}
+
+
+</style>
+
+
+<body>
+    <div class="heading">
+        <h1>All news</h1>
+       
+    
+   </div>
+   <ul>
+      {% if request.user.is_authenticated %}<br>
+      <li>Hello {{ user.get_username}}</li> {% endif %}<br>
+      <li id="time">{{time.0}}</li>
+      <li id="time">{{time.1}}</li><br><br><br>
+        <li><a href="{% url 'home' %}">Latest</a></li>
+        <li><a href="{% url 'sports' %}">Sports</a></li>
+        <li><a href="{% url 'covid' %}">COVID-19</a></li>
+        <li><a href="{% url 'world' %}">World</a></li>
+      <li><a href="{% url 'techno' %}">Tech</a></li>
+      <li><a href="{% url 'weather' %}">Weather</a></li>
+      <li><a href="{% url 'more' %}">More</a></li><br><br><br>
+      <li> <a href="/logout" class="blob-btn">LOGOUT
+          <span class="blob-btn__inner">
+          <span class="blob-btn__blobs">
+          <span class="blob-btn__blob"></span>
+          <span class="blob-btn__blob"></span>
+          <span class="blob-btn__blob"></span>
+          <span class="blob-btn__blob"></span>
+          </span>
+          </span></a></li>
+      
+    </ul>
+    <div class="container">
+            
+                 {% for channel,dict in full_dict.items %}   
+                 {% for key,value in dict.items %}
+                    
+                    <a class="more" href={{value.1}}>
+                      <div id="box">
+                        <div class="head">
+                          <h5>{{key}} </h5>
+                      </div>
+                      <br>
+                      <p style="color:rgba(255,255,255,0.5);font-size: 10px; ">{{channel}}</p>
+                <p> {{value.0}}</p>
+                
+                      </div> 
+                    </a>{% endfor %}
+
+                    {% endfor %}
+  </div>
+
+
+  <script
+src="http://code.jquery.com/jquery-3.3.1.min.js"
+integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+</body>
+</html>
