@@ -685,7 +685,7 @@ def weather(request):
         z = x["weather"]
         weather_description = z[0]["description"]
         list1q.append(city_name)
-        list1q.append(current_temperature)  
+        list1q.append(int(int(current_temperature)-273.15))  
         list1q.append(current_pressure)
         list1q.append(current_humidiy)
         list1q.append(weather_description)
